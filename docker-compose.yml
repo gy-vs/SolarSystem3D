@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  solar-system-3d:
+    image: nginx:alpine
+    container_name: solar-system-3d
+    ports:
+      - "3000:80"
+    volumes:
+      - ./:/usr/share/nginx/html
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "description=Solar System 3D Visualization Application"
+      - "author=SolarSystem3D"

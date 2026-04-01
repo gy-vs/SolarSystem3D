@@ -1,0 +1,19 @@
+{
+  "name": "solar-system-3d",
+  "version": "1.0.0",
+  "description": "Interactive 3D Solar System visualization with Three.js",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "keywords": ["threejs", "solar-system", "3d", "visualization"],
+  "author": "",
+  "license": "MIT"
+}
