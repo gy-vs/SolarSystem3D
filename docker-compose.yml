@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  solar-system-3d:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM node:20-alpine AS builder
+        WORKDIR /app
+        COPY package*.json ./
+        RUN npm install
+        COPY . .
+        RUN npm run build
+
+        FROM nginx:alpine
+        COPY --from=builder /app/dist /usr/share/nginx/html
+        COPY --from=builder /app/node_modules/three /usr/share/nginx/html/node_modules/three
+        EXPOSE 80
+    ports:
+      - "3000:80"
+    container_name: solar-system-3d
+    restart: unless-stopped
