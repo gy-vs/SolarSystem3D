@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太阳系 3D 可视化 | Solar System 3D</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-container">
+        <canvas id="scene-canvas"></canvas>
+        
+        <header class="app-header">
+            <h1 class="app-title">🌌 太阳系 3D 可视化</h1>
+            <p class="app-hint">拖拽旋转 · 滚轮缩放 · 点击行星查看详情</p>
+        </header>
+
+        <aside class="control-panel" id="control-panel">
+            <div class="panel-header">
+                <h2>⚙️ 控制面板</h2>
+            </div>
+
+            <div class="control-group">
+                <h3 class="group-title">🚀 公转控制</h3>
+                <div class="control-item">
+                    <label>公转速度</label>
+                    <div class="slider-container">
+                        <input type="range" id="orbit-speed" min="0.1" max="10" step="0.1" value="1">
+                        <span class="slider-value" id="orbit-speed-value">1.0x</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3 class="group-title">📏 缩放控制</h3>
+                <div class="control-item">
+                    <label>行星大小比例</label>
+                    <div class="slider-container">
+                        <input type="range" id="planet-scale" min="0.5" max="5" step="0.1" value="1">
+                        <span class="slider-value" id="planet-scale-value">1.0x</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3 class="group-title">👁️ 显示选项</h3>
+                <div class="control-item">
+                    <label>显示轨道线</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="show-orbits" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3 class="group-title">🪐 行星显示</h3>
+                <div id="planet-toggles"></div>
+            </div>
+        </aside>
+
+        <div class="info-panel-overlay" id="info-overlay">
+            <div class="info-panel" id="info-panel">
+                <button class="close-btn" id="close-info">✕</button>
+                <div class="info-header">
+                    <div class="planet-icon" id="planet-icon"></div>
+                    <h2 id="planet-name">行星名称</h2>
+                </div>
+                <div class="info-content">
+                    <div class="info-row">
+                        <span class="info-icon">📏</span>
+                        <span class="info-label">直径</span>
+                        <span class="info-value" id="planet-diameter">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">🌞</span>
+                        <span class="info-label">与太阳距离</span>
+                        <span class="info-value" id="planet-distance">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">🔄</span>
+                        <span class="info-label">公转周期</span>
+                        <span class="info-value" id="planet-period">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">🔃</span>
+                        <span class="info-label">自转周期</span>
+                        <span class="info-value" id="planet-rotation">-</span>
+                    </div>
+                    <div class="info-row info-description">
+                        <span class="info-icon">📝</span>
+                        <span class="info-label">简介</span>
+                        <p class="info-value" id="planet-description">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
